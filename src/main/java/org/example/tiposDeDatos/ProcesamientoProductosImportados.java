@@ -15,31 +15,40 @@ public class ProcesamientoProductosImportados {
         };
 
         StringBuilder reporte = new StringBuilder();
-        int valido = 0;
-        int invalido =0;
 
-        for (String c : codigos){
-            if (c==null){
+        int productosValidos = 0;
+        int productosInvalidos = 0;
+
+        for (String codigo : codigos) {
+
+            if (codigo!=null){
+                productosValidos++;
+                String categoria = codigo.split("-")[0];
+                if ("MOUSE".equals(categoria)) {
+                    reporte.append("Producto válido: ")
+                            .append(codigo)
+                            .append("-- Categoria: ")
+                            .append(categoria)
+                            .append("\n");
+                } else {
+                    reporte.append("Producto válido: ")
+                            .append(codigo)
+                            .append("\n");
+                }
+            }else {
                 reporte.append("Producto inválido")
                         .append("\n");
-                invalido++;
-            }else {
-                reporte.append("Producto válido: ")
-                        .append(c)
-                        .append("\n");
-                valido++;
+                productosInvalidos++;
+
             }
+
         }
+
         System.out.println(reporte);
-        System.out.println("Productos Validos: " + valido);
-        System.out.println("Productos Invalidos: " + invalido);
+        System.out.println("Productos Validos: " + productosValidos);
+        System.out.println("Productos Invalidos: " + productosInvalidos);
         System.out.println("\n");
 
-        for (String c : codigos){
-            if(c!=null && c.contains("MOUSE")){
-                System.out.println("Prodcuto " + c + " Pertenece a la categoria MOUSE");
-            }
-        }
     }
 
 
